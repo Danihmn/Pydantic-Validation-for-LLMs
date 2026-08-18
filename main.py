@@ -1,13 +1,13 @@
-from helpers.validate_llm_response import validate_llm_response
-from models.customer_query import CustomerQuery
+from agents import pydantic_agent
+from helpers.call_llm import call_llm
 from models.user_input import UserInput
 
-user_input_json = '''{
+user_input_json = """{
     "name": "joe",
     "email": "joe@gmail.com",
     "query": "I forgot my password",
     "order_id": null
-}'''
+}"""
 
 user_input = UserInput.model_validate_json(user_input_json)
 
@@ -33,4 +33,8 @@ Respond ONLY with valid JSON. Do not include any explanations or other text
 or formatting before or after the JSON object.
 """
 
-validated_data, error_message = validate_llm_response(prompt, CustomerQuery, 10)
+# NO MORE NECESSARY, WE USE NOW THE OWN PYDANTIC LLM VALIDATIONS LIBRARIES
+# validated_data, error_message = validate_llm_response(prompt, CustomerQuery, 10)
+
+llm_response = call_llm(prompt)
+print(llm_response)
