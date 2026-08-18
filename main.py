@@ -1,4 +1,3 @@
-from agents import pydantic_agent
 from helpers.call_llm import call_llm
 from models.user_input import UserInput
 
