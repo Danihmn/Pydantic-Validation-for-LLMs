@@ -1,39 +1,18 @@
 from helpers.call_llm import call_llm
+from helpers.create_customer_query import create_customer_query
+from helpers.validate_user_input import validate_user_input
 from models.user_input import UserInput
 
-user_input_json = """{
-    "name": "joe",
-    "email": "joe@gmail.com",
-    "query": "I forgot my password",
-    "order_id": null
+user_input_json = """
+{
+    "name": "Joe User",
+    "email": "joe@example.com",
+    "query": "When can I expect delivery of the headphones I ordered?",
+    "order_id": "ABC-12345",
+    "purchase_date": "2025-12-01"
 }"""
 
-user_input = UserInput.model_validate_json(user_input_json)
-
-example_response_structure = """{
-name="Example User",
-email="user@example.com",
-query="I ordered a new computer monitor and it arrived with broken screen",
-order_id=123456,
-priority="medium",
-category="refund_request",
-is_complaint=True,
-tags=["monitor", "support"]
-}
-"""
-
-prompt = f"""
-Please analyze this user query\n{user_input.model_dump_json(indent=4)}:
-
-Return your analysis as a JSON object matching this exact structure and data types:\n
-{example_response_structure}
-
-Respond ONLY with valid JSON. Do not include any explanations or other text
-or formatting before or after the JSON object.
-"""
-
-# NO MORE NECESSARY, WE USE NOW THE OWN PYDANTIC LLM VALIDATIONS LIBRARIES
-# validated_data, error_message = validate_llm_response(prompt, CustomerQuery, 10)
-
-llm_response = call_llm(prompt)
-print(llm_response)
+valid_data = validate_user_input(user_input_json).model_dump_json()
+customer_query = create_customer_query(valid_data)
+print(type(customer_query))
+print(customer_query.model_dump_json(indent=2))
