@@ -1,4 +1,4 @@
-from main import order_db
+from data import order_db
 from models.check_order_status_args import CheckOrderStatusArgs
 
 

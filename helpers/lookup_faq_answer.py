@@ -1,4 +1,4 @@
-from main import faq_db
+from data import faq_db
 from models.faq_lookup_args import FAQLookupArgs
 
 

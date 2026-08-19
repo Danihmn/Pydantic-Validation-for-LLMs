@@ -1,7 +1,7 @@
 import json
 
 from client import client
-from main import tool_definitions
+from helpers.tool_definitions import tool_definitions
 from models.customer_query import CustomerQuery
 from models.support_ticket import SupportTicket
 from settings import Settings, settings
