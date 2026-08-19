@@ -1,5 +1,5 @@
-from models.check_order_status_args import CheckOrderStatusArgs
-from models.faq_lookup_args import FAQLookupArgs
+from app.models.check_order_status_args import CheckOrderStatusArgs
+from app.models.faq_lookup_args import FAQLookupArgs
 
 tool_definitions = [
     {

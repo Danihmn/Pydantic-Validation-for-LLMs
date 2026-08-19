@@ -2,8 +2,8 @@ from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.providers.openai import OpenAIProvider
 
-from models.customer_query import CustomerQuery
-from settings import settings
+from app.models.customer_query import CustomerQuery
+from app.config.settings import settings
 
 
 def create_customer_query(valid_user_json: str) -> CustomerQuery:

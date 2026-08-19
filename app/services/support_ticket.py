@@ -1,10 +1,11 @@
 import json
 from datetime import datetime
 
-from client import openai_client
-from models.customer_query import CustomerQuery
-from models.support_ticket import SupportTicket
-from settings import settings
+from app.clients.openai import openai_client
+from app.models.customer_query import CustomerQuery
+from app.models.support_ticket import SupportTicket
+from app.prompts.support_ticket import build_support_ticket_prompt
+from app.config.settings import settings
 
 
 def generate_structured_support_ticket(
@@ -14,14 +15,9 @@ def generate_structured_support_ticket(
         f"Tool: {out['tool_call_id']} Output: {json.dumps(out['output'])}"
         for out in tool_outputs
     ]) if tool_outputs else "No tool calls were made."
-    # Concatenate prompt parts into a single string for Anthropic
-    prompt = f"""
-        You are a support agent. Use all information below to 
-        generate a support ticket as a validated Pydantic model.
-        Customer query: {customer_query.model_dump_json(indent=2)}
-        LLM message: {str(message.content)}
-        Tool results: {tool_results_str}
-    """
+    prompt = build_support_ticket_prompt(
+        customer_query, message, tool_results_str
+    )
     # Create the message with structured output
     response = openai_client.messages.create(
         model=settings.deployment_name,

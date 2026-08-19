@@ -2,7 +2,7 @@ from typing import Literal
 
 from pydantic import Field
 
-from models.user_input import UserInput
+from app.models.user_input import UserInput
 
 
 class CustomerQuery(UserInput):

@@ -1,6 +1,6 @@
-from client import openai_client
-from models.customer_query import CustomerQuery
-from settings import settings
+from app.clients.openai import openai_client
+from app.models.customer_query import CustomerQuery
+from app.config.settings import settings
 
 
 def call_llm(prompt):

@@ -11,7 +11,12 @@ A small study project exploring how to validate structured LLM outputs using [Py
 
 ## Structure
 
-- `models/` — Pydantic models defining the expected data shapes (`UserInput`, `CustomerQuery`).
-- `helpers/` — core logic: calling the LLM, validating its response, and building retry prompts on failure.
-- `client.py` / `settings.py` — OpenAI-compatible client configured via environment variables.
-- `main.py` — example run: validates a sample user query into a `CustomerQuery`.
+- `main.py` — entrypoint: runs the example flow end to end.
+- `app/config/` — settings loaded from environment variables (`.env`).
+- `app/clients/` — OpenAI-compatible clients (raw and `instructor`-wrapped).
+- `app/models/` — Pydantic models defining the expected data shapes (`UserInput`, `CustomerQuery`, `SupportTicket`, tool argument schemas).
+- `app/prompts/` — prompt templates, built as functions so the LLM-facing text lives in one place.
+- `app/data/` — in-memory database simulation (`faq_db`, `order_db`).
+- `app/tools/` — tool implementations, their JSON schema definitions, and the dispatcher that routes tool calls.
+- `app/services/` — orchestration: input validation, customer query generation, tool-calling decision, support ticket generation.
+- `app/examples/` — sample user input payloads used by `main.py`.

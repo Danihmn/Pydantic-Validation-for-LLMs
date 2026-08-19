@@ -1,5 +1,5 @@
-from data import order_db
-from models.check_order_status_args import CheckOrderStatusArgs
+from app.data.order_db import order_db
+from app.models.check_order_status_args import CheckOrderStatusArgs
 
 
 def check_order_status(args: CheckOrderStatusArgs):

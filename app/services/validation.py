@@ -1,4 +1,4 @@
-from models.user_input import UserInput
+from app.models.user_input import UserInput
 
 
 def validate_user_input(user_json: str):

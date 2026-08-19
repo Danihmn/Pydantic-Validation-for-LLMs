@@ -3,8 +3,8 @@ from typing import Literal, Optional
 
 from pydantic import Field
 
-from models.customer_query import CustomerQuery
-from models.order_details import OrderDetails
+from app.models.customer_query import CustomerQuery
+from app.models.order_details import OrderDetails
 
 
 class SupportTicket(CustomerQuery):

@@ -1,5 +1,5 @@
-from data import faq_db
-from models.faq_lookup_args import FAQLookupArgs
+from app.data.faq_db import faq_db
+from app.models.faq_lookup_args import FAQLookupArgs
 
 
 def lookup_faq_answer(args: FAQLookupArgs) -> str:

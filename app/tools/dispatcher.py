@@ -1,7 +1,7 @@
-from helpers.check_order_status import check_order_status
-from helpers.lookup_faq_answer import lookup_faq_answer
-from models.check_order_status_args import CheckOrderStatusArgs
-from models.faq_lookup_args import FAQLookupArgs
+from app.tools.check_order_status import check_order_status
+from app.tools.lookup_faq_answer import lookup_faq_answer
+from app.models.check_order_status_args import CheckOrderStatusArgs
+from app.models.faq_lookup_args import FAQLookupArgs
 
 
 def get_tool_outputs(tool_calls):
